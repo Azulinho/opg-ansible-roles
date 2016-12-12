@@ -1,0 +1,9 @@
+---
+- name: Create Iam Users
+  iam:
+    iam_type: user
+    name: "{{ item }}"
+    state: present
+    access_key_state: create
+  with_items: "{{ iam_users|default([]) }}"
+  when: iam_users is defined
